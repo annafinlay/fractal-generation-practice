@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>GLSL noise library: Simplex and Perlin noise</title>
+  </head>
+
+  <body>
+    <div class="side-by-side">
+      <div class="catalog">
+        <p>
+          Compare 2D Simplex noise with 2D Perlin noise:
+        </p>
+
+        <canvas id="snoise-2d" width="512" height="512"></canvas>
+        <canvas id="cnoise-2d" width="512" height="512"></canvas>
+
+        <p>
+          3D Simplex and Perlin noise on a sphere:
+        </p>
+
+        <canvas id="snoise-3d" width="512" height="512"></canvas>
+        <canvas id="cnoise-3d" width="512" height="512"></canvas>
+
+        <p>
+          The obvious visual differences between Simplex noise (left) and Perlin
+          noise (right) disappear when many octaves are added using fractal
+          Brownian motion (fBm). These are 2D slices through 3D noise:
+        </p>
+
+        <canvas id="snoise-3d-fbm" width="512" height="512"></canvas>
+        <canvas id="cnoise-3d-fbm" width="512" height="512"></canvas>
+
+        <p>
+          These are 3D slices through 4D noise:
+        </p>
+
+        <canvas id="snoise-4d-fbm" width="512" height="512"></canvas>
+        <canvas id="cnoise-4d-fbm" width="512" height="512"></canvas>
+      </div>
+
+      <div class="source">
+        <div>
+          <p>Click on an image to generate a shadertoy-compatible shader:</p>
+          <textarea readonly onClick="this.select()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <script src="noisedemo.js"></script>
+
+    <script>
+      Diagram(
+        "#cnoise-3d-fbm",
+        "2d",
+        "classicnoise3D.glsl",
+        `cnoise(vec3(1.5*xy, 0.3*iTime))`,
+        "fbm",
+        true
+      );
+    </script>
+  </body>
+</html>
